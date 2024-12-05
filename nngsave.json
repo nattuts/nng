@@ -40,7 +40,15 @@
     "MyNat.add_right_eq_self",
     "cases",
     "MyNat.add_right_eq_zero",
-    "MyNat.add_left_eq_zero"
+    "MyNat.add_left_eq_zero",
+    "MyNat.succ_mul",
+    "MyNat.mul_comm",
+    "MyNat.one_mul",
+    "MyNat.two_mul",
+    "MyNat.mul_add",
+    "MyNat.add_mul",
+    "MyNat.mul_assoc",
+    "MyNat.add_left_comm"
   ],
   "openedIntro": true,
   "data": {
@@ -378,40 +386,120 @@
     },
     "Multiplication": {
       "1": {
-        "code": "rw[one_eq_succ_zero]\r\nrw[mul_succ]\r\nrw[mul_zero]\r\nrw[zero_add]\r\nrfl\r\n\r\n",
+        "code": "rw[one_eq_succ_zero]\r\nrw[mul_succ]\r\nrw[mul_zero]\r\nrw[zero_add]\r\nrfl",
         "completed": true,
         "selections": [
           {
-            "selectionStartLineNumber": 6,
-            "selectionStartColumn": 1,
-            "positionLineNumber": 6,
-            "positionColumn": 1
+            "selectionStartLineNumber": 5,
+            "selectionStartColumn": 4,
+            "positionLineNumber": 5,
+            "positionColumn": 4
           }
         ],
         "help": []
       },
       "2": {
-        "code": "induction m with d hd\r\nrw[mul_zero]\r\nrfl\r\nrw[mul_succ]\r\nrw[add_zero]\r\nexact hd\r\n",
+        "code": "induction m with k hd\r\nrw[mul_zero]\r\nrfl\r\nrw[mul_succ]\r\nrw[add_zero]\r\nexact hd",
         "completed": true,
         "selections": [
           {
-            "selectionStartLineNumber": 7,
-            "selectionStartColumn": 1,
-            "positionLineNumber": 7,
-            "positionColumn": 1
+            "selectionStartLineNumber": 6,
+            "selectionStartColumn": 9,
+            "positionLineNumber": 6,
+            "positionColumn": 9
           }
         ],
         "help": []
       },
       "3": {
-        "code": "induction b with d hd\r\nrw[mul_zero]\r\nrw[mul_zero]\r\nrw[add_zero]\r\nrfl\r\n",
-        "completed": false,
+        "code": "induction b with k h\r\nrepeat rw[mul_zero]\r\nrw[add_zero]\r\nrfl\r\nrepeat rw[mul_succ]\r\nrepeat rw[add_succ]\r\nrw[h]\r\nrw[add_right_comm]\r\nrfl",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 9,
+            "selectionStartColumn": 4,
+            "positionLineNumber": 9,
+            "positionColumn": 4
+          }
+        ],
+        "help": []
+      },
+      "4": {
+        "code": "induction b with k h\r\nrw[zero_mul]\r\nrw[mul_zero]\r\nrfl\r\nrw[succ_mul]\r\nrw[mul_succ]\r\nrw[h]\r\nrfl",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 8,
+            "selectionStartColumn": 4,
+            "positionLineNumber": 8,
+            "positionColumn": 4
+          }
+        ],
+        "help": []
+      },
+      "5": {
+        "code": "rw[mul_comm, mul_one]\r\nrfl",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 2,
+            "selectionStartColumn": 4,
+            "positionLineNumber": 2,
+            "positionColumn": 4
+          }
+        ],
+        "help": []
+      },
+      "6": {
+        "code": "induction m with a h\r\nrw[mul_zero, add_zero]\r\nrfl\r\nrw[two_eq_succ_one, one_eq_succ_zero]\r\nrw[succ_mul, succ_mul]\r\nrw[zero_mul, zero_add]\r\nrfl",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 7,
+            "selectionStartColumn": 4,
+            "positionLineNumber": 7,
+            "positionColumn": 4
+          }
+        ],
+        "help": []
+      },
+      "7": {
+        "code": "induction c with k h\r\nrw[mul_zero, add_zero, add_zero]\r\nrfl\r\nrw[add_succ, mul_succ, mul_succ, h]\r\nrw[add_assoc]\r\nrfl",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 1,
+            "selectionStartColumn": 21,
+            "positionLineNumber": 1,
+            "positionColumn": 21
+          }
+        ],
+        "help": [
+          0
+        ]
+      },
+      "8": {
+        "code": "induction b with k h\r\nrw[zero_mul, add_zero, add_zero]\r\nrfl\r\nrw[add_succ, succ_mul, succ_mul, h]\r\nrw[add_assoc]\r\nrfl ",
+        "completed": true,
         "selections": [
           {
             "selectionStartLineNumber": 6,
-            "selectionStartColumn": 1,
+            "selectionStartColumn": 5,
             "positionLineNumber": 6,
-            "positionColumn": 1
+            "positionColumn": 5
+          }
+        ],
+        "help": []
+      },
+      "9": {
+        "code": "induction c with k h\r\nrw[mul_zero, mul_zero, mul_zero]\r\nrfl\r\nrepeat rw[mul_succ]\r\nrw[h]\r\nrw[mul_add]\r\nrfl",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 7,
+            "selectionStartColumn": 4,
+            "positionLineNumber": 7,
+            "positionColumn": 4
           }
         ],
         "help": []
@@ -492,6 +580,34 @@
             "selectionStartColumn": 8,
             "positionLineNumber": 4,
             "positionColumn": 8
+          }
+        ],
+        "help": []
+      }
+    },
+    "Algorithm": {
+      "1": {
+        "code": "rw[add_comm]\r\nrw[add_assoc]\r\nrw[add_comm a c]\r\nrfl",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 4,
+            "selectionStartColumn": 4,
+            "positionLineNumber": 4,
+            "positionColumn": 4
+          }
+        ],
+        "help": []
+      },
+      "2": {
+        "code": "repeat rw[add_assoc]\r\nrw[add_left_comm b c]\r\nrw[add_comm b d]\r\nrfl",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 4,
+            "selectionStartColumn": 4,
+            "positionLineNumber": 4,
+            "positionColumn": 4
           }
         ],
         "help": []
