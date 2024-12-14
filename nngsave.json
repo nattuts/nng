@@ -84,7 +84,15 @@
     "MyNat.le_total",
     "MyNat.succ_le_succ",
     "MyNat.le_one",
-    "MyNat.le_two"
+    "MyNat.le_two",
+    "MyNat.mul_le_mul_right",
+    "MyNat.mul_left_ne_zero",
+    "tauto",
+    "MyNat.eq_succ_of_ne_zero",
+    "MyNat.one_le_of_ne_zero",
+    "MyNat.le_mul_right",
+    "have",
+    "MyNat.mul_right_eq_one"
   ],
   "openedIntro": true,
   "data": {
@@ -859,13 +867,13 @@
         "help": []
       },
       "10": {
-        "code": "induction n+3 with k h\r\nsimp[pow_zero]\r\nintro h1\r\nrw[one_eq_succ_zero] at h1\r\n",
+        "code": "induction n+3 with e h\r\nsimp\r\nexact\r\n",
         "completed": false,
         "selections": [
           {
-            "selectionStartLineNumber": 5,
+            "selectionStartLineNumber": 4,
             "selectionStartColumn": 1,
-            "positionLineNumber": 5,
+            "positionLineNumber": 4,
             "positionColumn": 1
           }
         ],
@@ -1022,6 +1030,97 @@
             "positionColumn": 1
           }
         ],
+        "help": []
+      }
+    },
+    "AdvMultiplication": {
+      "1": {
+        "code": "cases h with k ha\r\nuse k*t\r\nrw[ha]\r\nrw[add_mul]\r\nrfl",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 5,
+            "selectionStartColumn": 4,
+            "positionLineNumber": 5,
+            "positionColumn": 4
+          }
+        ],
+        "help": []
+      },
+      "2": {
+        "code": "contrapose! h\r\nrw[h]\r\nrw[mul_zero]\r\nrfl",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 4,
+            "selectionStartColumn": 4,
+            "positionLineNumber": 4,
+            "positionColumn": 4
+          }
+        ],
+        "help": [
+          0
+        ]
+      },
+      "3": {
+        "code": "cases a with k\r\ntauto\r\ncontrapose! ha\r\ntauto",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 3,
+            "selectionStartColumn": 15,
+            "positionLineNumber": 3,
+            "positionColumn": 15
+          }
+        ],
+        "help": []
+      },
+      "4": {
+        "code": "cases a with k\r\ntauto\r\napply eq_succ_of_ne_zero at ha\r\ncases ha with a he\r\nuse a\r\nrw[he]\r\nrw[succ_eq_add_one, add_comm]\r\nrfl",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 8,
+            "selectionStartColumn": 4,
+            "positionLineNumber": 8,
+            "positionColumn": 4
+          }
+        ],
+        "help": []
+      },
+      "5": {
+        "code": "apply mul_left_ne_zero at h\r\napply one_le_of_ne_zero at h\r\napply mul_le_mul_right 1 b a at h\r\ncases h with c he\r\nrw[one_mul, mul_comm] at he\r\nrw[he]\r\ntauto",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 7,
+            "selectionStartColumn": 6,
+            "positionLineNumber": 7,
+            "positionColumn": 6
+          }
+        ],
+        "help": []
+      },
+      "6": {
+        "code": "have h1 : x * y ≠ 0\r\nrw[h]\r\ntauto\r\napply le_mul_right x y at h1\r\nrw[h] at h1\r\napply le_one at h1\r\ncases h1 with ha he\r\nrw[ha] at h\r\nrw[zero_mul] at h\r\nrw[ha]\r\ntrivial\r\ntrivial",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 12,
+            "selectionStartColumn": 8,
+            "positionLineNumber": 12,
+            "positionColumn": 8
+          }
+        ],
+        "help": [
+          4,
+          6
+        ]
+      },
+      "7": {
+        "code": "",
+        "completed": false,
+        "selections": [],
         "help": []
       }
     }
