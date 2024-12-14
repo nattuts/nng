@@ -80,7 +80,11 @@
     "MyNat.le_zero",
     "MyNat.le_antisymm",
     "left",
-    "right"
+    "right",
+    "MyNat.le_total",
+    "MyNat.succ_le_succ",
+    "MyNat.le_one",
+    "MyNat.le_two"
   ],
   "openedIntro": true,
   "data": {
@@ -965,20 +969,60 @@
         ]
       },
       "8": {
-        "code": "induction y with k h\r\nright\r\napply zero_le\r\ncases h with h1 h2\r\nleft\r\n",
-        "completed": false,
+        "code": "induction y with k h\r\nright\r\napply zero_le\r\ncases h with a b\r\nleft\r\napply le_trans x k\r\nexact a\r\napply le_succ_self\r\ncases b with e he\r\ncases e with a\r\nrw[add_zero] at he\r\nleft\r\nrw[he]\r\napply le_succ_self\r\nright\r\nrw[he]\r\nuse a\r\nrw[add_succ, succ_add]\r\nrfl",
+        "completed": true,
         "selections": [
           {
-            "selectionStartLineNumber": 6,
-            "selectionStartColumn": 1,
-            "positionLineNumber": 6,
-            "positionColumn": 1
+            "selectionStartLineNumber": 9,
+            "selectionStartColumn": 18,
+            "positionLineNumber": 9,
+            "positionColumn": 18
           }
         ],
         "help": [
           0,
-          3
+          8,
+          9
         ]
+      },
+      "9": {
+        "code": "cases hx with a ha\r\nuse a\r\nrw[succ_add] at ha\r\napply succ_inj at ha\r\nexact ha",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 5,
+            "selectionStartColumn": 9,
+            "positionLineNumber": 5,
+            "positionColumn": 9
+          }
+        ],
+        "help": []
+      },
+      "10": {
+        "code": "cases x with a\r\nleft\r\ntrivial\r\nrw[one_eq_succ_zero] at hx\r\napply succ_le_succ at hx\r\napply le_zero at hx\r\nright\r\nrw[hx]\r\nrw[succ_eq_add_one]\r\nrw[zero_add]\r\nrfl",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 11,
+            "selectionStartColumn": 4,
+            "positionLineNumber": 11,
+            "positionColumn": 4
+          }
+        ],
+        "help": []
+      },
+      "11": {
+        "code": "cases x with a\r\nleft\r\ntrivial\r\nrw[two_eq_succ_one] at hx\r\napply succ_le_succ at hx\r\napply le_one at hx\r\ncases hx with ha he\r\nright\r\nleft\r\nrw[ha]\r\nrw[succ_eq_add_one, zero_add]\r\nrfl\r\nright\r\nright\r\nrw[he]\r\ntrivial\r\n",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 17,
+            "selectionStartColumn": 1,
+            "positionLineNumber": 17,
+            "positionColumn": 1
+          }
+        ],
+        "help": []
       }
     }
   },
