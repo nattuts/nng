@@ -92,7 +92,11 @@
     "MyNat.one_le_of_ne_zero",
     "MyNat.le_mul_right",
     "have",
-    "MyNat.mul_right_eq_one"
+    "MyNat.mul_right_eq_one",
+    "MyNat.mul_ne_zero",
+    "MyNat.mul_eq_zero",
+    "MyNat.mul_left_cancel",
+    "MyNat.mul_right_eq_self"
   ],
   "openedIntro": true,
   "data": {
@@ -1118,9 +1122,60 @@
         ]
       },
       "7": {
-        "code": "",
-        "completed": false,
-        "selections": [],
+        "code": "apply eq_succ_of_ne_zero at ha\r\napply eq_succ_of_ne_zero at hb\r\ncases ha with c h1\r\ncases hb with d h2\r\nrw[h1]\r\nrw[h2]\r\nrw[mul_succ, succ_mul, add_succ]\r\napply succ_ne_zero",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 8,
+            "selectionStartColumn": 19,
+            "positionLineNumber": 8,
+            "positionColumn": 19
+          }
+        ],
+        "help": []
+      },
+      "8": {
+        "code": "have h1 := mul_ne_zero a b\r\ntauto",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 2,
+            "selectionStartColumn": 6,
+            "positionLineNumber": 2,
+            "positionColumn": 6
+          }
+        ],
+        "help": [
+          0,
+          1
+        ]
+      },
+      "9": {
+        "code": "induction b with k hk generalizing c\r\nrw[mul_zero] at h\r\nsymm at h\r\napply mul_eq_zero at h\r\ntauto\r\ncases c with e\r\nrw[mul_zero] at h\r\nrw[mul_succ] at h\r\napply add_left_eq_zero at h\r\nrw[h] at ha\r\nsymm at h\r\nrw[h]\r\ntauto\r\nrepeat rw[succ_eq_add_one] at h\r\nrw[mul_add] at h\r\nrw[mul_add] at h\r\napply add_right_cancel at h\r\napply hk at h\r\nrw[h]\r\ntrivial",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 20,
+            "selectionStartColumn": 8,
+            "positionLineNumber": 20,
+            "positionColumn": 8
+          }
+        ],
+        "help": [
+          5
+        ]
+      },
+      "10": {
+        "code": "cases b with e he\r\nrw[mul_zero] at h\r\ntauto\r\nrw[succ_eq_add_one] at h\r\nrw[mul_add] at h\r\nrw[mul_one] at h\r\nnth_rewrite 3 [← zero_add a] at h\r\napply add_right_cancel at h\r\napply mul_eq_zero at h\r\ncases h with h1 h2\r\nrw[h1] at ha\r\ntauto\r\nrw[h2]\r\nrw[succ_eq_add_one]\r\nrw[zero_add]\r\nrfl",
+        "completed": true,
+        "selections": [
+          {
+            "selectionStartLineNumber": 16,
+            "selectionStartColumn": 4,
+            "positionLineNumber": 16,
+            "positionColumn": 4
+          }
+        ],
         "help": []
       }
     }
